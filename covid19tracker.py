@@ -63,7 +63,52 @@ def stateFigures():
     # print(state_dict)
     return state_dict
 
+
+def allFigures():
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--window-size=1920x1080")
+    driver = webdriver.Chrome(chrome_options=options, executable_path=PATH)
+    driver.get(URL)
+    time.sleep(2)
+    attributes = []
+    values = []
+    state_dict = {}
+    root = driver.find_element_by_id("root")  
+    level = root.find_element_by_class_name("Level")
+    h5 = level.find_elements_by_tag_name("h5")
+    h1 = level.find_elements_by_tag_name("h1")
+    for x, y in zip(h5, h1):
+        attributes.append(x.text)
+        values.append(y.text)
+    
+    state_dict["All India"] = values
+
+    state_names = []
+    state_figures = []
+    table = root.find_element_by_class_name("table")
+ 
+    rows = table.find_elements_by_class_name("row")
+    for row in rows:
+        cell = row.find_element_by_class_name("cell")
+        state_names.append(cell.text)
+
+    state_names = state_names[1:-1]
+    for row in rows:
+        state_vals = row.find_elements_by_class_name("total")
+        for val in state_vals:
+            state_figures.append(val.text)
+    state_figures = state_figures[:-4]
+    
+    for i in range(0, len(state_figures), 4):
+        state_dict[state_names[i//4]] = state_figures[i:i+4]
+    # print(state_dict)
+    driver.quit()
+    return attributes, state_dict
+    
+
+
 if __name__ == "__main__":
  
-    print(allIndiafigures())
+    print(allFigures())
 
