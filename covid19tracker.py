@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
+URL = "https://www.covid19india.org/"
 
 def allIndiafigures():
     """function returning all India figures of confirmed, active, recovered and deceased cases"""
@@ -11,8 +12,8 @@ def allIndiafigures():
     options.add_argument("--headless")
     options.add_argument("--window-size=1920x1080")
     driver = webdriver.Chrome(chrome_options=options, executable_path=PATH)
-    driver.get("https://www.covid19india.org/")
-    time.sleep(10)
+    driver.get(URL)
+    time.sleep(2)
     attributes = []
     values = []
     root = driver.find_element_by_id("root")  
@@ -34,8 +35,8 @@ def stateFigures():
     options.add_argument("--headless")
     options.add_argument("--window-size=1920x1080")
     driver = webdriver.Chrome(executable_path=PATH, options=options)
-    driver.get("https://www.covid19india.org/")
-    time.sleep(10)
+    driver.get(URL)
+    time.sleep(2)
     state_names = []
     state_figures = []
     root = driver.find_element_by_id("root")
@@ -64,5 +65,5 @@ def stateFigures():
 
 if __name__ == "__main__":
  
-    stateFigures()
+    print(allIndiafigures())
 
