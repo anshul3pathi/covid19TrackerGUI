@@ -11,7 +11,7 @@ def allIndiafigures():
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--window-size=1920x1080")
-    driver = webdriver.Chrome(chrome_options=options, executable_path=PATH)
+    driver = webdriver.Chrome(options=options, executable_path=PATH)
     driver.get(URL)
     time.sleep(2)
     attributes = []
@@ -34,7 +34,7 @@ def stateFigures():
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--window-size=1920x1080")
-    driver = webdriver.Chrome(executable_path=PATH, options=options)
+    driver = webdriver.Chrome(executable_path==PATH, options=options)
     driver.get(URL)
     time.sleep(2)
     state_names = []
@@ -68,7 +68,7 @@ def allFigures():
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--window-size=1920x1080")
-    driver = webdriver.Chrome(chrome_options=options, executable_path=PATH)
+    driver = webdriver.Chrome(options=options, executable_path=PATH)
     driver.get(URL)
     time.sleep(2)
     attributes = []
